@@ -9,7 +9,9 @@ import logging
 load_dotenv()
 
 
-logging.basicConfig(filename='log.log', level=logging.INFO)
+dir_name = os.path.dirname(__file__))
+
+logging.basicConfig(filename=dir_name + '/log.log', level=logging.INFO)
 logging.info('loggggyloggg')
 
 bot = Client(Intents=Intents.DEFAULT, debug_scope=os.getenv('TEST_SERVER_ID'))
