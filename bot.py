@@ -1,4 +1,4 @@
-from interactions import Client, Intents, listen, slash_command, SlashContext
+from interactions import Client, Intents, listen, slash_command, SlashContext, InteractionContext
 
 import os
 
@@ -25,6 +25,10 @@ async def make_an_error(ctx: SlashContext):
         logging.info(f'logggg: {e}')
         await ctx.send('something went wrong')
 
+@slash_command(name="ping", description="Ping...")  # , scopes=[test_guild_id]
+async def ping(ctx: InteractionContext):
+    logging.info("got a ping")
+    await ctx.send(f"Pong!")
 
 @listen()
 async def on_ready():
