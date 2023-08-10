@@ -1,4 +1,4 @@
-from interactions import Client, Intents, listen, slash_command, SlashContext
+from interactions import Client, Intents, listen, slash_command, SlashContext, InteractionContext
 
 import os
 
@@ -9,7 +9,9 @@ import logging
 load_dotenv()
 
 
-logging.basicConfig(filename='log.log', level=logging.INFO)
+dir_name = os.path.dirname(__file__)
+
+logging.basicConfig(filename=dir_name + '/log.log', level=logging.INFO)
 logging.info('loggggyloggg')
 
 bot = Client(Intents=Intents.DEFAULT, debug_scope=os.getenv('TEST_SERVER_ID'))
@@ -23,6 +25,10 @@ async def make_an_error(ctx: SlashContext):
         logging.info(f'logggg: {e}')
         await ctx.send('something went wrong')
 
+@slash_command(name="ping", description="Ping...")  # , scopes=[test_guild_id]
+async def ping(ctx: InteractionContext):
+    logging.info("got a ping")
+    await ctx.send(f"Pong!")
 
 @listen()
 async def on_ready():

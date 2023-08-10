@@ -1,0 +1,23 @@
+name: Deploy to Google Cloud Platform Compute Engine
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH Remote Commands
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          script: |
+            host: ${{ secrets.HOST }} 
+            username: ${{ secrets.USERNAME }}
+            key: ${{ secrets.KEY }}
+            port: ${{ secrets.PORT }}
+            cd /home/${{ secrets.USERNAME }}/
+            rm -rf SimpleBot
+            git clone https://github.com/ekand/SimpleBot.git
+            cp keep/SimpleBot/.env SimpleBot/.env
+            sudo systemctl restart simple-bot.service
