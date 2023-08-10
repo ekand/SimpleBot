@@ -9,7 +9,7 @@ import logging
 load_dotenv()
 
 
-dir_name = os.path.dirname(__file__))
+dir_name = os.path.dirname(__file__)
 
 logging.basicConfig(filename=dir_name + '/log.log', level=logging.INFO)
 logging.info('loggggyloggg')
