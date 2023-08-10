@@ -16,7 +16,8 @@ jobs:
             username: ${{ secrets.USERNAME }}
             key: ${{ secrets.KEY }}
             port: ${{ secrets.PORT }}
-            cd /home/${{ secrets.USERNAME }}/simplebot/
+            cd /home/${{ secrets.USERNAME }}/
+            rm -rf SimpleBot
             git clone https://github.com/ekand/SimpleBot.git
-            cp ../keep/SimpleBot/.env .env
+            cp keep/SimpleBot/.env SimpleBot/.env
             sudo systemctl restart simple-bot.service
