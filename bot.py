@@ -28,7 +28,7 @@ async def make_an_error(ctx: SlashContext):
 @slash_command(name="ping", description="Ping...")  # , scopes=[test_guild_id]
 async def ping(ctx: InteractionContext):
     logging.info("got a ping")
-    await ctx.send(f"Ping with extra Zing!!")
+    await ctx.send(f"Pong!")
 
 @listen()
 async def on_ready():
